@@ -5,6 +5,7 @@
 export const copyProps = (dest: object, src: object, exclude: string[] = []) => {
 	const props = Object.getOwnPropertyDescriptors(src);
 	for (let prop of exclude) delete props[prop];
+	for (let propName in props) props[propName].configurable = true;
 	Object.defineProperties(dest, props);
 };
 
